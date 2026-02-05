@@ -24,18 +24,18 @@ function App() {
     <>
       <Imesada/>
       <Header />
-        <h1>HELLO REACT</h1>
-        <p>Parágrafo do Texto</p>
+        {/* <h1>HELLO REACT</h1> */}
+        {/* <p>Parágrafo do Texto</p>
         <input type="text" 
           value={inputPreco}
           onChange={(event) => setInputPreco(event.target.value)}
-        />
+        /> */}
         {/* {inputPreco} */}
-        <button onClick={tratarTeste}>Teste</button>
+        {/* <button onClick={tratarTeste}>Teste</button>
         <div className="resultado">
           <button onClick={calculcarDobro}>Dobrar</button>
           Dobro do Número: {dobro}
-        </div>
+        </div> */}
     </>
   )
 }

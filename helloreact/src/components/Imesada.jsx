@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './Imesada.css'
 
 function Imesada() {
 
@@ -16,19 +17,21 @@ function Imesada() {
     }
 
     return (
-            <div>
+            <div className="container">
                 <h2>iMesada</h2>
                 <p>Controlinho Financeiro</p>
                 <p>💵💸Saldo: R$ {saldo}</p>
                 <input type="text" 
                     value={inputSaldo}
                     onChange={(e) => setInputSaldo(e.target.value)}
+                    placeholder="Valor"
                     />
-                    <br />
-                <button onClick={creditarSaldo}>Crédito</button>
-                <button onClick={debitarSaldo}>Débito</button>
+                    <div className="acoes">
+                        <button onClick={creditarSaldo} className="btn credito">Crédito</button>
+                        <button onClick={debitarSaldo} className="btn debito">Débito</button>
+                    </div>
             </div>
     )
 }
 
-export default Imesada
+export default Imesada;

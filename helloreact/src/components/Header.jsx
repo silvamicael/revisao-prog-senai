@@ -4,7 +4,7 @@ function Header() {
 
     return(
         <header>Cabeçalho da página
-            <p className='paragrafo-do-header'>Textinho qualquer</p>
+            {/* <p className='paragrafo-do-header'>Textinho qualquer</p> */}
 
         </header>
     )
