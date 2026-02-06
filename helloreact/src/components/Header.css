@@ -1,6 +1,7 @@
 
-header{
-    background-color: aqua
+.container-header{
+    background-color: aqua;
+    height: 70px;
 }
 
 .paragrafo-do-header{
