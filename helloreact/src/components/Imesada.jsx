@@ -4,34 +4,49 @@ import './Imesada.css'
 function Imesada() {
 
     const [saldo, setSaldo] = useState(0);
-    const [inputSaldo, setInputSaldo] = useState('');
+    const [inputValor, setInputValor] = useState('');
     const [relatorio, setRelatorio] = useState([]);
-    const [descricao, setDescricao] = useState('');
+    const [inputDescricao, setInputDescricao] = useState('');
 
     function creditarSaldo(){
-        let valor = Number(inputSaldo)
-        setSaldo (saldo + valor)
-        setInputSaldo ('')
+
+        if (!inputDescricao.trim() || !inputValor || Number(inputValor) <= 0) {
+        alert("Preencha a descrição e um valor válido!");
+        return;
+    }
+        setSaldo (saldo + Number(inputValor))
+        setInputValor ('')
+        setInputDescricao('')
 
         setRelatorio((prev) => [
       ...prev,
-      { tipo: "(crédito)",
-      descricao: descricao,
-      valor: valor,
-      saldo: setSaldo }
+      { tipo: "crédito",
+      descricao: inputDescricao,
+      valor: inputValor,
+      saldo: setSaldo,
+      id: Date.now()  
+        }
     ]);
     }
 
     function debitarSaldo(){
-        let valor = Number(inputSaldo)
-        setSaldo (saldo - valor)
+
+        if (!inputDescricao.trim() || !inputValor || Number(inputValor) <= 0) {
+        alert("Preencha a descrição e um valor válido!");
+        return;
+    }
+        setSaldo (saldo - Number(inputValor))
+        setInputValor ('')
+        setInputDescricao('')
 
         setRelatorio((prev) => [
       ...prev,
-      { tipo: "(débito)",
-      descricao: descricao,
-      valor: valor,
-      saldo: setSaldo }
+      { tipo: "débito",
+      descricao: inputDescricao,
+      valor: inputValor,
+      saldo: setSaldo,
+      id: Date.now()    
+        }
     ]);
     }
 
@@ -41,39 +56,39 @@ function Imesada() {
                     <img src="./imgs/porco.png" alt="" className="imagem-porco"/>
                     <h2>iMesada</h2>
                     <p>Controlinho Financeiro</p>
-                    <p>💸Saldo: R$ {saldo}💵</p>
+                    <p>💸Saldo: R$ {saldo}</p>
                     
                     <input type="text" 
-                        value={descricao}
-                        onChange={(e) => setDescricao(e.target.value)}
+                        value={inputDescricao}
+                        onChange={(e) => setInputDescricao(e.target.value)}
                         placeholder="Descrição"
                     />
 
-                    <input type="text" 
-                        value={inputSaldo}
-                        onChange={(e) => setInputSaldo(e.target.value)}
+                    <input type="number" 
+                        value={inputValor}
+                        onChange={(e) => setInputValor(e.target.value)}
                         placeholder="Valor"
+                        min="0"
+                        step="0.01"
                         />
                         
 
                     <div className="botoes">
-                        <button onClick={creditarSaldo} className="btn credito">Creditar</button>
-                        <button onClick={debitarSaldo} className="btn debito">Debitar</button>
+                        <button onClick={creditarSaldo} className="btncredito">Creditar</button>
+                        <button onClick={debitarSaldo} className="btndebito">Debitar</button>
                     </div>
 
                         <h3>🐧Kowalski Relatório🧾</h3>
 
-                    <table>
-                        <tbody>
-                        {relatorio.map((item, index) => (
-                            <tr key={index}>
-                            <td> {item.descricao} = </td>
-                            <td> R${item.valor}.00  </td>
-                            <td> {item.tipo} </td>
-                            </tr>
+                    <div className={"render-cards"}>
+                        {relatorio.map((r) => (
+                            <div key={r.id} className={r.tipo}>
+                                <label> {r.descricao} </label>
+                                <label> || R${r.valor} || </label>
+                                <label> {r.tipo} </label>
+                            </div>
                         ))}
-                        </tbody>
-                    </table>
+                    </div>  
                 </div>
             </div>
     )

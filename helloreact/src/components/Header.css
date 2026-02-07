@@ -2,9 +2,18 @@
 .container-header{
     background-color: aqua;
     height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .paragrafo-do-header{
     background-color: brown;
 
+}
+
+.spider-man{
+    height: 70px;
+    width: 100vh;
+    justify-content: center
 }
